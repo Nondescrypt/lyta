@@ -19,6 +19,7 @@ end
     @test v + v1 == Lyta.vector(0,0,0);     # vector plus vector is a vector
     @test p - v == Lyta.point(0,0,0);       
     @test v - v1 == Lyta.vector(2,4,6);
+    @test p - p ==Lyta.vector(0,0,0);       # point minus point is a vector
     @test -v + v == Lyta.vector(0,0,0);     # unary negation
     @test -2 * v1 == Lyta.vector(2, 4, 6);  # multiplication by a scalar
 end

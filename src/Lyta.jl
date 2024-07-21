@@ -35,6 +35,7 @@ import Base.*;
 
     (-)(a::Vector, b::Vector) = vector(a.x - b.x, a.y - b.y, a.z - b.z);
     (-)(a::Point, b::Vector) = point(a.x - b.x, a.y - b.y, a.z - b.z);
+    (-)(a::Point, b::Point) = vector(a.x - b.x, a.y - b.y, a.z - b.z);
     (-)(a::Vector) = vector(-a.x, -a.y, -a.z);                              # unary negation
 
     (*)(a::Number, b::Vector) = vector(a * b.x, a * b.y, a * b.z );
