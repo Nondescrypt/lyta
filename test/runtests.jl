@@ -23,3 +23,16 @@ end
     @test -v + v == Lyta.vector(0,0,0);     # unary negation
     @test -2 * v1 == Lyta.vector(2, 4, 6);  # multiplication by a scalar
 end
+
+@testset "measures" begin
+    v = Lyta.vector(-1, -2, -3);
+    @test Lyta.magnitude(v) == sqrt(14);
+    @test Lyta.magnitude(Lyta.vector(0,0,0)) == 0;
+    @test Lyta.magnitude(Lyta.normalize(v)) == 1;
+    @test Lyta.magnitude(v) * Lyta.normalize(v) == v;
+    @test Lyta.dot(v,v) == Lyta.magnitude(v)^2;
+    @test Lyta.dot(v, Lyta.vector(0,0,0)) == 0;
+    @test Lyta.dot(v, Lyta.vector(1,0,0)) == v.x;
+    @test Lyta.dot(v, Lyta.vector(0,1,0)) == v.y;
+    @test Lyta.dot(v, Lyta.vector(0,0,1)) == v.z;
+end
