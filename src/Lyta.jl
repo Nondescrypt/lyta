@@ -6,6 +6,8 @@ import Base.*;
 
     greet() = print("Lyta en la casa!")
 
+
+    # Points and Vectors
     @enum TripleType t_vector=0 t_point=1
 
     struct Vector
@@ -62,6 +64,22 @@ import Base.*;
         a.z * b.x - a.x * b.z,
         a.x * b.y - a.y * b.x
         );
+    end
+
+    # Colors
+    struct Color
+        red::Float64
+        green::Float64
+        blue::Float64
+        α::Float64
+    end
+
+    function color(r::Real, g::Real, b::Real, α::Real)
+        Lyta.Color(r,g,b,α)
+    end
+
+    function hadamard_product(c1::Color, c2::Color)
+        Lyta.color(c1.red*c2.red, c1.green*c2.green, c1.blue*c2.blue, c1.α*c2.α);
     end
 
 end # module Lyta

@@ -50,3 +50,10 @@ end
     @test Lyta.cross(vz,vx) == vy;
     @test Lyta.cross(vz,vy) + vx == Lyta.vector(0,0,0); # playing fast and loose with floating point is going to bite us eventually
 end
+
+# Color tests
+@testset "colors" begin
+    purple = Lyta.color(1, 0, 1, 1);
+    yellow = Lyta.color(1, 1, 0, 0.5);
+    @test Lyta.hadamard_product(purple, yellow) == Lyta.color(1,0,0, 0.5);
+end
