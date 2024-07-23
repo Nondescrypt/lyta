@@ -40,6 +40,7 @@ import Base.*;
     (-)(a::Vector) = vector(-a.x, -a.y, -a.z);                              # unary negation
 
     (*)(a::Number, b::Vector) = vector(a * b.x, a * b.y, a * b.z );
+    (*)(b::Vector, a::Number) = vector(a * b.x, a * b.y, a * b.z );         # commutes
 
     # measure operations
     function magnitude(a::Vector)
