@@ -66,7 +66,7 @@ import Base.*;
         );
     end
 
-    # Colors
+    # Colors and Canvas
     struct Color
         red::Float64
         green::Float64
@@ -75,11 +75,25 @@ import Base.*;
     end
 
     function color(r::Real, g::Real, b::Real, α::Real)
-        Lyta.Color(r,g,b,α)
+        Lyta.Color(r,g,b,α);
     end
 
     function hadamard_product(c1::Color, c2::Color)
         Lyta.color(c1.red*c2.red, c1.green*c2.green, c1.blue*c2.blue, c1.α*c2.α);
+    end
+
+    struct Canvas
+        pixel::Matrix{Lyta.Color}
+    end
+
+    function canvas(width::Int, height::Int, init::Lyta.Color)
+        c = Lyta.Canvas(Matrix{Lyta.Color}(undef, width, height));
+        for i in 1:width
+            for j in 1:height
+                c.pixel[i,j] = init;
+            end
+        end
+        return c;
     end
 
 end # module Lyta
