@@ -1,8 +1,9 @@
 # lyta
 
-Lyta is a simple raytracer.
+Lyta is a simple raytracer. 
+The design will loosely follow "The Raytracer Challenge" by J. Buck, Pragmatic Press, 2019.
 
-Lyta is provided under a BSD 3-clause license.
+Lyta is provided under a BSD 3-clause license. See LICENSE file.
 
 # Development
 Lyta is not a registered Julia package -- yet!

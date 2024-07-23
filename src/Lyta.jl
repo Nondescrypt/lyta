@@ -41,6 +41,7 @@ import Base.*;
 
     (*)(a::Number, b::Vector) = vector(a * b.x, a * b.y, a * b.z );
 
+    # measure operations
     function magnitude(a::Vector)
         sqrt(a.x^2 + a.y^2 + a.z^2)
     end
@@ -49,8 +50,17 @@ import Base.*;
         1.0 / magnitude(a) * a;
     end
 
+    # vector operations
     function dot(a::Vector, b::Vector)
         a.x * b.x + a.y * b.y + a.z * b.z;
+    end
+
+    function cross(a::Vector, b::Vector)
+        vector( 
+        a.y * b.z - a.z * b.y,
+        a.z * b.x - a.x * b.z,
+        a.x * b.y - a.y * b.x
+        );
     end
 
 end # module Lyta

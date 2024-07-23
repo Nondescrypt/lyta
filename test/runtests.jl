@@ -30,9 +30,23 @@ end
     @test Lyta.magnitude(Lyta.vector(0,0,0)) == 0;
     @test Lyta.magnitude(Lyta.normalize(v)) == 1;
     @test Lyta.magnitude(v) * Lyta.normalize(v) == v;
+end
+
+@testset "dots and crosses" begin
+    vx = Lyta.vector(1,0,0);
+    vy = Lyta.vector(0,1,0);
+    vz = Lyta.vector(0,0,1);
+    v = Lyta.vector(-1, -2, -3);
     @test Lyta.dot(v,v) == Lyta.magnitude(v)^2;
     @test Lyta.dot(v, Lyta.vector(0,0,0)) == 0;
-    @test Lyta.dot(v, Lyta.vector(1,0,0)) == v.x;
-    @test Lyta.dot(v, Lyta.vector(0,1,0)) == v.y;
-    @test Lyta.dot(v, Lyta.vector(0,0,1)) == v.z;
+    @test Lyta.dot(v, vx) == v.x;
+    @test Lyta.dot(v, vy) == v.y;
+    @test Lyta.dot(v, vz) == v.z;
+    @test Lyta.cross(vx,vx) == Lyta.vector(0,0,0);
+    @test Lyta.cross(vy,vy) == Lyta.vector(0,0,0);
+    @test Lyta.cross(vz,vz) == Lyta.vector(0,0,0);
+    @test Lyta.cross(vx,vy) == vz;
+    @test Lyta.cross(vy,vz) == vx;
+    @test Lyta.cross(vz,vx) == vy;
+    @test Lyta.cross(vz,vy) + vx == Lyta.vector(0,0,0); # playing fast and loose with floating point is going to bite us eventually
 end
