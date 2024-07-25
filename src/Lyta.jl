@@ -6,6 +6,7 @@ import Base.*;
 
     greet() = print("Lyta en la casa!")
 
+    PPM_COLUMNS = 70;   # we didn't write the rules
 
     # Points and Vectors
     @enum TripleType t_vector=0 t_point=1
@@ -78,6 +79,23 @@ import Base.*;
         Lyta.Color(r,g,b,α);
     end
 
+    struct RGBColor
+        red::Int
+        green::Int
+        blue::Int
+    end
+
+    function rgbcolor(r::Int, g::Int, b::Int)
+        Lyta.RGBColor(r,g,b);
+    end
+
+    function rgbcolor(c::Color, saturated::Int)
+        r = min(saturated, max(0, floor(Int, c.red * saturated)));
+        g = min(saturated, max(0, floor(Int, c.green * saturated)));
+        b = min(saturated, max(0, floor(Int, c.blue * saturated)));
+        Lyta.RGBColor(r,g,b);
+    end
+     
     function hadamard_product(c1::Color, c2::Color)
         Lyta.color(c1.red*c2.red, c1.green*c2.green, c1.blue*c2.blue, c1.α*c2.α);
     end
@@ -88,12 +106,42 @@ import Base.*;
 
     function canvas(width::Int, height::Int, init::Lyta.Color)
         c = Lyta.Canvas(Matrix{Lyta.Color}(undef, width, height));
-        for i in 1:width
-            for j in 1:height
-                c.pixel[i,j] = init;
+        for i in 1:height
+            for j in 1:width
+                c.pixel[j,i] = init;
             end
         end
         return c;
+    end
+
+    # overkill. It's easier and clearer to use the accessor directly.
+    function setpixel(canvas::Canvas, i::Int, j::Int, color::Color)
+        canvas.pixel[i,j] = color;
+    end
+
+    function getpixel(canvas::Canvas, i::Int, j::Int)
+        canvas.pixel[i,j];
+    end
+
+    function canvas_to_ppm(canvas::Canvas, maxval::Int, filename::String)
+        w = size(canvas.pixel)[1];
+        h = size(canvas.pixel)[2];
+        data = string("P3", "\n", w, "\n", h, "\n", maxval, "\n");
+        columns = 0;
+        for i in 1:h
+            for j in 1:w
+                rgb = rgbcolor(canvas.pixel[j,i], maxval);
+                x = "$(rgb.red) $(rgb.green) $(rgb.blue) "; # note space at end
+                if (columns + length(x) > PPM_COLUMNS) 
+                    data *= "\n";
+                    columns = 0
+                end
+                data *= x;
+                columns += length(x);
+            end            
+        end
+        data *= "\n";
+        println(data);
     end
 
 end # module Lyta

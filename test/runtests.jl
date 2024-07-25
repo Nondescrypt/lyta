@@ -57,3 +57,9 @@ end
     yellow = Lyta.color(1, 1, 0, 0.5);
     @test Lyta.hadamard_product(purple, yellow) == Lyta.color(1,0,0, 0.5);
 end
+
+# Canvas tests
+@testset "canvas" begin
+    w = 640; h = 480;
+    c = Lyta.canvas(w, h, Lyta.Color(1,1,1,1));
+end
