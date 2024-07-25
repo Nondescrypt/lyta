@@ -126,22 +126,23 @@ import Base.*;
     function canvas_to_ppm(canvas::Canvas, maxval::Int, filename::String)
         w = size(canvas.pixel)[1];
         h = size(canvas.pixel)[2];
-        data = string("P3", "\n", w, "\n", h, "\n", maxval, "\n");
+        os = open(filename, "w");
+        header = string("P3", "\n", w, "\n", h, "\n", maxval, "\n");
+        write(os, header)
         columns = 0;
         for i in 1:h
             for j in 1:w
                 rgb = rgbcolor(canvas.pixel[j,i], maxval);
                 x = "$(rgb.red) $(rgb.green) $(rgb.blue) "; # note space at end
                 if (columns + length(x) > PPM_COLUMNS) 
-                    data *= "\n";
-                    columns = 0
+                    write(os, "\n"); columns = 0;
                 end
-                data *= x;
+                write(os, x);
                 columns += length(x);
             end            
         end
-        data *= "\n";
-        println(data);
+        write(os, "\n"); ## PPM specifies a terminal newline
+        close(os);
     end
 
 end # module Lyta
