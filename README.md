@@ -8,14 +8,17 @@ Lyta is provided under a BSD 3-clause license. See LICENSE file.
 # Development
 Lyta is not a registered Julia package -- yet!
 
+```
 > git clone https://github.com/Nondescrypt/lyta.git
 > julia                 # smash ] to open the Julia pkg manager
-pkg> activate ./lyta    # backspace to return to the julia prompt
+pkg> activate ./lyta    
+pkg> build
+pkg> test
+# backspace to return to the julia prompt
 julia> import Lyta
 julia> Lyta.greet()     # should output the greeting text
 julia> cd("lyta")
-pkg> build
-pkg> test
+```
 
 See https://pkgdocs.julialang.org/v1/creating-packages/ for information about creating Julia packages.
 
