@@ -61,5 +61,21 @@ end
 # Canvas tests
 @testset "canvas" begin
     w = 640; h = 480;
-    c = Lyta.canvas(w, h, Lyta.Color(1,1,1,1));
+    c = Lyta.canvas(w, h, Lyta.Color(0,0,0,1));
+    for i in 1:w
+        for j in 1:480
+            c.pixel[i,j]=Lyta.Color(i/640.0, j/480.0, 1, 1);
+        end
+    end
+    Lyta.canvas_to_ppm(c, 255, "gradients_cartesian.ppm");
+    
+    for i in 1:w
+        for j in 1:480
+            x = (i-w/2.0)/w; y = (j-h/2)/h;
+            θ = atan(y,x)
+            c.pixel[i,j]=Lyta.Color(cos(θ)^2, 2*(x^2 + y^2), sin(θ)^2, 1);
+        end
+    end
+    Lyta.canvas_to_ppm(c, 255, "gradients_polar.ppm");
+    
 end
