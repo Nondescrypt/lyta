@@ -1,5 +1,4 @@
 # Lyta
-![alt text](https://github.com/Nondescrypt/lyta/main/test.ppm?raw=true)
 ## About
 Lyta will be a simple raytracer. 
 The design will loosely follow _The Raytracer Challenge_ book [1]. 
