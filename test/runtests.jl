@@ -1,7 +1,7 @@
 using Lyta
 using Test
 
-println("Running tests for package Lyta...")
+println("Running tests for package Lyta...");
 
 p = Lyta.point(1,2,3);
 v = Lyta.vector(1,2,3);
