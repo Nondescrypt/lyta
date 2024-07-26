@@ -8,8 +8,8 @@ v = Lyta.vector(1,2,3);
 
 # silly tests
 @testset "constructors" begin
-    @test p.t == Lyta.t_point;
-    @test v.t == Lyta.t_vector;
+    @test p.w == 1.0;
+    @test v.w == 0.0;
     @test p != v;
 end
 

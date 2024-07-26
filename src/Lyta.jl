@@ -9,28 +9,26 @@ import Base.*;
     PPM_COLUMNS = 70;   # we didn't write the rules
 
     # Points and Vectors
-    @enum TripleType t_vector=0 t_point=1
-
     struct Vector
         x::Float64
         y::Float64
         z::Float64
-        t::TripleType
+        w::Float64
     end;
 
     struct Point
         x::Float64
         y::Float64
         z::Float64
-        t::TripleType
+        w::Float64
     end;
 
     function vector(x::Real, y::Real, z::Real)
-        Vector(x, y, z, t_vector);
+        Vector(x, y, z, 0.0);
     end
 
     function point(x::Real, y::Real, z::Real)
-        Point(x, y, z, t_point);
+        Point(x, y, z, 1.0);
     end
 
     # arithmetic operations
