@@ -14,12 +14,6 @@ struct Point
     w::Float64
 end;
 
-struct Ray
-    origin::Point
-    direction::Vector
-    color::Lyta.Color
-end;
-
 struct Color
     red::Float64
     green::Float64
@@ -33,7 +27,23 @@ struct RGBColor
     blue::Int
 end
 
+struct Ray
+    origin::Point
+    direction::Vector
+    color::Lyta.Color
+end;
+
 struct Canvas
     pixel::Matrix{Lyta.Color}
+end
+
+struct Intersection
+    objectId::Int
+    range:: Real
+end
+
+struct Sphere
+    origin::Vector
+    radius::Real
 end
 
