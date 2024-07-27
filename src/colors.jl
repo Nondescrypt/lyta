@@ -1,18 +1,9 @@
 # Colors
-struct Color
-    red::Float64
-    green::Float64
-    blue::Float64
-    α::Float64
-end
+
 function color(r::Real, g::Real, b::Real, α::Real)
     Lyta.Color(r,g,b,α);
 end
-struct RGBColor
-    red::Int
-    green::Int
-    blue::Int
-end
+
 function rgbcolor(r::Int, g::Int, b::Int)
     Lyta.RGBColor(r,g,b);
 end

@@ -5,26 +5,6 @@ import Base.+;
 import Base.-;
 import Base.*;
 
-struct Vector
-    x::Float64
-    y::Float64
-    z::Float64
-    w::Float64
-end;
-
-struct Point
-    x::Float64
-    y::Float64
-    z::Float64
-    w::Float64
-end;
-
-struct Ray
-    origin::Point
-    direction::Vector
-    color::Lyta.Color
-end;
-
 function vector(x::Real, y::Real, z::Real)
     Vector(x, y, z, 0.0);
 end

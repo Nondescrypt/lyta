@@ -2,10 +2,6 @@
 
 PPM_COLUMNS = 70;   # we didn't write the rules
 
-struct Canvas
-    pixel::Matrix{Lyta.Color}
-end
-
 function canvas(width::Int, height::Int, init::Lyta.Color)
     c = Lyta.Canvas(Matrix{Lyta.Color}(undef, width, height));
     for i in 1:height
