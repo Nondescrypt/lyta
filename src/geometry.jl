@@ -1,4 +1,4 @@
-# Points and Vectors
+# Points and Vectors and Rays
     
 # These will get extended
 import Base.+;
@@ -19,12 +19,22 @@ struct Point
     w::Float64
 end;
 
+struct Ray
+    origin::Point
+    direction::Vector
+    color::Lyta.Color
+end;
+
 function vector(x::Real, y::Real, z::Real)
     Vector(x, y, z, 0.0);
 end
 
 function point(x::Real, y::Real, z::Real)
     Point(x, y, z, 1.0);
+end
+
+function ray(origin::Point, direction::Vector, color::Lyta.Color)
+    Ray(origin, direction, color);
 end
 
  # arithmetic operations
@@ -59,4 +69,9 @@ function cross(a::Vector, b::Vector)
     a.z * b.x - a.x * b.z,
     a.x * b.y - a.y * b.x
     );
+end
+
+# ray operations
+function position(r::Ray, t::Real)
+    r.origin + t * r.direction;
 end

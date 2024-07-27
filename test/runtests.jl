@@ -5,6 +5,8 @@ println("Running tests for package Lyta...");
 
 p = Lyta.point(1,2,3);
 v = Lyta.vector(1,2,3);
+d = Lyta.vector(4,5,6);
+r = Lyta.ray(p,d,Lyta.Color(1,1,1,1));
 
 # silly tests
 @testset "constructors" begin
@@ -49,6 +51,17 @@ end
     @test Lyta.cross(vy,vz) == vx;
     @test Lyta.cross(vz,vx) == vy;
     @test Lyta.cross(vz,vy) + vx == Lyta.vector(0,0,0); # playing fast and loose with floating point is going to bite us eventually
+end
+
+@testset "rays" begin
+    @test r.origin == p;
+    @test r.direction == d;
+    @test r.color == Lyta.Color(1,1,1,1);
+    p2 = Lyta.point(2,3,4); d2 = Lyta.vector(1,0,0);
+    r2 = Lyta.ray(p2, d2, Lyta.Color(1,1,1,1));
+    @test Lyta.position(r2, 0) == p2;
+    @test Lyta.position(r2, 1) == p2 + d2;
+    @test Lyta.position(r2, 2.5) == p2 + 2.5*d2;
 end
 
 # Color tests
