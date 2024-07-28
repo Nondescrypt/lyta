@@ -7,5 +7,6 @@ include("./colors.jl");
 include("./geometry.jl");
 include("./canvas.jl");
 include("./transformations.jl");
+include("./raytests.jl");
 
 end # module Lyta

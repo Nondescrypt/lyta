@@ -43,7 +43,8 @@ struct Intersection
 end
 
 struct Sphere
-    origin::Vector
+    objectId::Int
+    origin::Point
     radius::Real
 end
 
